@@ -1,9 +1,32 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <app-products></app-products>
+<div>
+  <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <!-- Brand/logo -->
+    <a class="navbar-brand" [routerLink]="['/welcome']">
+        <img src="./assets/logo.jpg" alt="logo" style="width:80px;">
+    </a>
+
+    <!-- Links -->
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/welcome']">Welcome</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/products']">Product List</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/dupa']">DUPA</a>
+        </li>
+
+    </ul>
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/login']">Login</a>
+        </li>
+    </ul>
+  </nav>
+    <div class="container">
+        <router-outlet></router-outlet>
+    </div>
 </div>
 
 

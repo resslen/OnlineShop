@@ -4,22 +4,46 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import {ProductListComponent} from './products/products-list.component';
-import { UserLoginRegistrationComponent } from './user/user-login-registration.component';
-import { SettingsComponent } from './user/settings.component';
 import { ProductDetailComponent } from './products/product-detail.component';
+import {WelcomeComponent} from './home/index';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {routing} from './app.routing';
+import {FormsModule} from '@angular/forms';
+import {AlertComponent} from './_directives/index';
+import {LoginComponent} from './login/index';
+import {RegisterComponent} from './register/index';
+import {AuthGuard} from './_guards/index';
+import {AlertService, AuthenticationService, UserService} from './_services/index';
+import {JwtInterceptor} from './_helpers/index';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     ProductListComponent,
-    UserLoginRegistrationComponent,
-    SettingsComponent,
-    ProductDetailComponent
+    ProductDetailComponent,
+    WelcomeComponent,
+    AlertComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule,
+    HttpClientModule,
+    routing
   ],
-  providers: [],
+  providers: [
+      AuthGuard,
+      AlertService,
+      AuthenticationService,
+      UserService,
+      {
+          provide: HTTP_INTERCEPTORS,
+          useClass: JwtInterceptor,
+          multi: true
+      },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

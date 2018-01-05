@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
 
 @Component({
-    selector: 'app-products',
     templateUrl: './products-list.component.html'
 })
 export class ProductListComponent {
-    pageTitle: string = 'Product List';
+    pageTitle: 'Product List';
     products: any[] =  [
         {
             "productId": 2,
