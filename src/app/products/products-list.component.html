@@ -7,7 +7,11 @@
         <div class='row'>
             <div class='col-md-2'>Filter by:</div>
             <div class='col-md-4'>
-                <input type='text' />
+                <input type='text'
+                       [(ngModel)]="listFilter"/>
+            </div>
+            <div class='ml-auto'>
+                <input class="btn btn-primary" type="button" value="Dodaj produkt"/>
             </div>
         </div>
         <hr>
@@ -25,12 +29,17 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr *ngFor='let product of products'>
-                    <td></td>
+                <tr *ngFor='let product of filteredProducts'>
+                    <td>
+                        <img [src]="product.imageUrl"
+                             [title]="product.productName"
+                             [style.width.px]= 80
+                             [style.margin.px]= 2>
+                    </td>
                     <td>{{ product.productName }}</td>
                     <td>{{ product.productCode }}</td>
                     <td>{{ product.releaseDate }}</td>
-                    <td>{{ product.price }}</td>
+                    <td>{{ product.price | currency:'PLN':true:'1.2-2' }}</td>
                     <td>{{ product.starRating }}</td>
                 </tr>
                 </tbody>
