@@ -5,7 +5,7 @@ import {ProductService} from './product.service';
 @Component({
     templateUrl: './products-list.component.html'
 })
-export class ProductListComponent implements OnInit{
+export class ProductListComponent implements OnInit {
     pageTitle: 'Product List';
     _listFilter: string;
     get listFilter(): string {

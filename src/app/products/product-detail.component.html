@@ -1,0 +1,21 @@
+<div class="container">
+    <br>
+    <br>
+    <div class="card">
+        <div class="card-body">
+            <img class="img-fluid" src="https://placehold.it/150x80?text=IMAGE" alt="item image" style="width: 300px">
+            <h4 class="card-title">{{product.productName}}</h4>
+            <p class="card-text">TU BEDZIE OPIS</p>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item"><b>KodProduktu:</b>{{product.productCode}}</li>
+            <li class="list-group-item"><b>Data Wprowadzenia:</b>{{product.releaseDate}}</li>
+            <li class="list-group-item"><b>Cena:</b>{{product.price | currency:'PLN':true:'1.2-2'}}</li>
+            <li class="list-group-item"><b>Opinia:</b>{{product.starRating}}</li>
+        </ul>
+        <div class="card-body">
+            <input class="btn btn-primary" type="button" value="Powrót"/>
+            <input class="btn btn-primary" type="button" value="Zakup produkt"/>
+        </div>
+    </div>
+</div>

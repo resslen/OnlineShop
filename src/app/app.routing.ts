@@ -12,9 +12,9 @@ const appRoutes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
     { path: 'products', component: ProductListComponent },
-    { path: 'products/:id', component: ProductDetailComponent },
+    { path: 'products/id', component: ProductDetailComponent },
     { path: 'welcome', component: WelcomeComponent },
     { path: '**', redirectTo: 'welcome',  pathMatch: 'full' }
-];
+    ];
 
 export const routing = RouterModule.forRoot(appRoutes);
