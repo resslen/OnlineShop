@@ -11,7 +11,7 @@
                        [(ngModel)]="listFilter"/>
             </div>
             <div class='ml-auto'>
-                <input class="btn btn-primary" type="button" value="Dodaj produkt"/>
+                <button class="btn btn-primary">Dodaj Produkt</button>
             </div>
         </div>
         <hr>
@@ -20,23 +20,26 @@
                    *ngIf='products && products.length'>
                 <thead class="thead-dark">
                 <tr>
-                    <th>Image</th>
-                    <th>Product</th>
-                    <th>Code</th>
-                    <th>Available</th>
-                    <th>Price</th>
-                    <th>5 Star Rating</th>
+                    <th>Zdjęcie</th>
+                    <th>Nazwa produktu</th>
+                    <th>Kod</th>
+                    <th>Wstawiono</th>
+                    <th>Cena</th>
+                    <th>Opinia klientów</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr *ngFor='let product of filteredProducts'>
                     <td>
-                        <img [src]="product.imageUrl"
-                             [title]="product.productName"
-                             [style.width.px]= 80
-                             [style.margin.px]= 2>
+                        <a [routerLink]="['/products', product.productId]">
+                            <img [src]="product.imageUrl"
+                                 [title]="product.productName"
+                                 [style.width.px]= 80
+                                 [style.margin.px]= 2>
+                        </a>
                     </td>
-                    <td>{{ product.productName }}</td>
+                    <td><a [routerLink]="['/products', product.productId]" >
+                        {{ product.productName }}</a></td>
                     <td>{{ product.productCode }}</td>
                     <td>{{ product.releaseDate }}</td>
                     <td>{{ product.price | currency:'PLN':true:'1.2-2' }}</td>
