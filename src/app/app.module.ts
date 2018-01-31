@@ -12,7 +12,7 @@ import {FormsModule} from '@angular/forms';
 import {AlertComponent} from './_directives/index';
 import {LoginComponent} from './login/index';
 import {RegisterComponent} from './register/index';
-import {AuthGuard} from './_guards/index';
+import {AuthGuard, ProductGuard} from './_guards/index';
 import {AlertService, AuthenticationService, UserService} from './_services/index';
 import {JwtInterceptor} from './_helpers/index';
 
@@ -35,6 +35,7 @@ import {JwtInterceptor} from './_helpers/index';
   ],
   providers: [
       AuthGuard,
+      ProductGuard,
       AlertService,
       AuthenticationService,
       UserService,
