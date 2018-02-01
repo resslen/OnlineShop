@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {IProduct} from './product';
 import {ProductService} from './product.service';
+import {Router} from '@angular/router';
 
 @Component({
     templateUrl: './products-list.component.html'
@@ -18,7 +19,8 @@ export class ProductListComponent implements OnInit {
     filteredProducts: IProduct[];
     products: IProduct[] =  [];
 
-    constructor(private _productService: ProductService) {
+    constructor(private _productService: ProductService,
+                private _router: Router) {
         this._listFilter = '';
     }
 

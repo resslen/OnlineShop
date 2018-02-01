@@ -16,6 +16,7 @@ import {AuthGuard, ProductGuard} from './_guards/index';
 import {AlertService, AuthenticationService, UserService} from './_services/index';
 import {JwtInterceptor} from './_helpers/index';
 import {ProductCreateComponent} from './products/product-create.component';
+import {ProductModifyComponent} from './products/product-modify.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import {ProductCreateComponent} from './products/product-create.component';
     AlertComponent,
     LoginComponent,
     RegisterComponent,
-    ProductCreateComponent
+    ProductCreateComponent,
+    ProductModifyComponent
   ],
   imports: [
     BrowserModule,

@@ -11,7 +11,7 @@
                        [(ngModel)]="listFilter"/>
             </div>
             <div class='ml-auto'>
-                <button class="btn btn-primary">Dodaj Produkt</button>
+                <a [routerLink]="['/product/create']"><button class="btn btn-primary">Dodaj Produkt</button></a>
             </div>
         </div>
         <hr>
@@ -48,7 +48,7 @@
                     <td>
                         <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
                             <button type="button" class="btn btn-primary">Zamów</button>
-                            <button type="button" class="btn btn-warning">Modyfikuj</button>
+                            <a [routerLink]="['/product/modify', product.productId]"><button type="button" class="btn btn-warning">Modyfikuj</button></a>
                             <button type="button" class="btn btn-danger">Usuń</button>
                         </div>
                     </td>
