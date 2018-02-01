@@ -19,17 +19,18 @@
             <table class='table'
                    *ngIf='products && products.length'>
                 <thead class="thead-dark">
-                <tr>
+                <tr class="text-center">
                     <th>Zdjęcie</th>
                     <th>Nazwa produktu</th>
                     <th>Kod</th>
                     <th>Wstawiono</th>
                     <th>Cena</th>
                     <th>Opinia klientów</th>
+                    <th>Dostępne funkcje</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr *ngFor='let product of filteredProducts'>
+                <tr class="text-center" *ngFor='let product of filteredProducts'>
                     <td>
                         <a [routerLink]="['/products', product.productId]">
                             <img [src]="product.imageUrl"
@@ -44,6 +45,13 @@
                     <td>{{ product.releaseDate }}</td>
                     <td>{{ product.price | currency:'PLN':true:'1.2-2' }}</td>
                     <td>{{ product.starRating }}</td>
+                    <td>
+                        <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                            <button type="button" class="btn btn-primary">Zamów</button>
+                            <button type="button" class="btn btn-warning">Modyfikuj</button>
+                            <button type="button" class="btn btn-danger">Usuń</button>
+                        </div>
+                    </td>
                 </tr>
                 </tbody>
             </table>
