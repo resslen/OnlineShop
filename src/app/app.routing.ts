@@ -6,6 +6,7 @@ import { RegisterComponent } from './register/index';
 import { AuthGuard, ProductGuard } from './_guards/index';
 import {ProductListComponent} from './products/products-list.component';
 import {ProductDetailComponent} from './products/product-detail.component';
+import {ProductCreateComponent} from './products/product-create.component';
 
 const appRoutes: Routes = [
     { path: '', component: WelcomeComponent, canActivate: [AuthGuard] },
@@ -13,6 +14,7 @@ const appRoutes: Routes = [
     { path: 'register', component: RegisterComponent },
     { path: 'products', component: ProductListComponent },
     { path: 'products/:id', component: ProductDetailComponent, canActivate: [ProductGuard] },
+    { path: 'product/create', component: ProductCreateComponent },
     { path: 'welcome', component: WelcomeComponent },
     { path: '**', redirectTo: 'welcome',  pathMatch: 'full' }
     ];

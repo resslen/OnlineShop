@@ -15,6 +15,7 @@ import {RegisterComponent} from './register/index';
 import {AuthGuard, ProductGuard} from './_guards/index';
 import {AlertService, AuthenticationService, UserService} from './_services/index';
 import {JwtInterceptor} from './_helpers/index';
+import {ProductCreateComponent} from './products/product-create.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import {JwtInterceptor} from './_helpers/index';
     WelcomeComponent,
     AlertComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ProductCreateComponent
   ],
   imports: [
     BrowserModule,
