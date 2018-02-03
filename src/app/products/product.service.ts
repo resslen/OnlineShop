@@ -12,6 +12,7 @@ import {errorHandler} from '@angular/platform-browser/src/browser';
 const httpOptions = {
     headers: new HttpHeaders({
         'Content-Type':  'application/json',
+        'Authorization': 'my-auth-token'
     })
 };
 
@@ -26,10 +27,28 @@ export class ProductService {
             .catch(this.handleError);
     }
 
+    getProductByID(productID: number): Observable<IProduct> {
+        const url = `${this._productURL}${productID}`;
+        return this._http.get<IProduct>(url, httpOptions) as Observable<IProduct>;
+    }
+
     postProduct (product: IProduct): Observable<IProduct> {
         return this._http.post<IProduct>(this._productURL, product, httpOptions)
             .catch(this.handleError);
     }
+
+    deleteProduct (productID: number): Observable<IProduct> {
+        const url = `${this._productURL}${productID}`;
+        return this._http.delete(url, httpOptions) as Observable<IProduct>;
+    }
+
+    updateProduct (product: IProduct): Observable<IProduct> {
+        httpOptions.headers =
+            httpOptions.headers.set('Authorization', 'my-new-auth-token');
+
+        return this._http.put<IProduct>(this._productURL, product, httpOptions);
+    }
+
 
     private handleError(err: HttpErrorResponse) {
         console.error(err.message);

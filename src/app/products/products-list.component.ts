@@ -9,6 +9,8 @@ import {Router} from '@angular/router';
 export class ProductListComponent implements OnInit {
     pageTitle: 'Product List';
     _listFilter: string;
+    allertVisible: boolean;
+
     get listFilter(): string {
         return this._listFilter;
     }
@@ -35,6 +37,17 @@ export class ProductListComponent implements OnInit {
                 this.products = products;
                 this.filteredProducts = this.products;
             });
+    }
 
+    delete(productID: number): void {
+        this._productService.deleteProduct(productID).subscribe(
+            result => {
+                this.ngOnInit();
+            },
+            error => {
+                console.log(productID);
+                this.allertVisible = true;
+            }
+        );
     }
 }

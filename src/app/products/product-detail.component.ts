@@ -14,9 +14,9 @@ export class ProductDetailComponent implements OnInit {
               private _router: Router) { }
 
   ngOnInit() {
-    const id = +this._route.snapshot.paramMap.get('id');
+    const id = this._route.snapshot.paramMap.get('id');
     this.product = {
-        'productId': id,
+        "_id": id,
         "productName": "Garden Cart",
         "productCode": "GDN-0023",
         "releaseDate": "March 18, 2016",

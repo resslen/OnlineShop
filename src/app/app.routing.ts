@@ -14,7 +14,7 @@ const appRoutes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
     { path: 'products', component: ProductListComponent },
-    { path: 'products/:id', component: ProductDetailComponent, canActivate: [ProductGuard] },
+    { path: 'products/:id', component: ProductDetailComponent },
     { path: 'product/create', component: ProductCreateComponent },
     { path: 'product/modify/:id', component: ProductModifyComponent },
     { path: 'welcome', component: WelcomeComponent },
