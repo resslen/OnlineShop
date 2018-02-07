@@ -2,47 +2,47 @@
 <div class="form-group row">
     <label for="product-modify-name" class="col-2 col-form-label">Nazwa Produktu</label>
     <div class="col-10">
-        <input class="form-control" type="text" value="{{product.productName}}" id="product-modify-name">
+        <input class="form-control" type="text" [(ngModel)]="product.productName" id="product-modify-name">
     </div>
 </div>
 <div class="form-group row">
     <label for="product-modify-code" class="col-2 col-form-label">Kod produktu</label>
     <div class="col-10">
-        <input class="form-control" type="text" value="{{product.productCode}}" id="product-modify-code">
+        <input class="form-control" type="text" [(ngModel)]="product.productCode" id="product-modify-code">
     </div>
 </div>
 <div class="form-group row">
     <label for="product-modify-imageURL" class="col-2 col-form-label">URL zdjęcia</label>
     <div class="col-10">
-        <input class="form-control" type="url" value="{{product.imageUrl}}" id="product-modify-imageURL">
+        <input class="form-control" type="url" [(ngModel)]="product.imageUrl" id="product-modify-imageURL">
     </div>
 </div>
 <div class="form-group row">
     <label for="product-modify-date" class="col-2 col-form-label">Data wstawienia</label>
     <div class="col-10">
-        <input class="form-control" type="date" value="{{product.releaseDate}}" id="product-modify-date">
+        <input class="form-control" type="date" [(ngModel)]="product.releaseDate" id="product-modify-date">
     </div>
 </div>
 <div class="form-group row">
     <label for="product-modify-price" class="col-2 col-form-label">Cena produktu</label>
     <div class="col-10">
-        <input class="form-control" type="text" value="{{product.price |currency:'PLN'}}" id="product-modify-price">
+        <input class="form-control" type="text" [(ngModel)]="product.price" id="product-modify-price">
     </div>
 </div>
 <div class="form-group row">
     <label for="product-modify-starRating" class="col-2 col-form-label">Opinia</label>
     <div class="col-10">
-        <input class="form-control" type="text" value="{{product.starRating}}" id="product-modify-starRating">
+        <input class="form-control" type="text" [(ngModel)]="product.starRating" id="product-modify-starRating">
     </div>
 </div>
 <div class="form-group row">
     <label for="product-modify-description" class="col-2 col-form-label">Opis</label>
     <div class="col-10">
-        <textarea class="form-control" type="text" value="{{product.description}}" rows="5" id="product-modify-description"></textarea>
+        <textarea class="form-control" type="text" [(ngModel)]="product.description" rows="5" id="product-modify-description"></textarea>
     </div>
 </div>
 <div>
     <br>
     <button class="btn btn-primary" (click)="onBack()">Powrót</button>
-    <button class="btn btn-primary" >Akceptuj modyfikacje</button>
+    <button class="btn btn-primary" (click)="updateProduct(product.productName , product.productCode, product.releaseDate, product.price, product.description, product.starRating, product.imageUrl)">Akceptuj modyfikacje</button>
 </div>

@@ -42,11 +42,11 @@ export class ProductService {
         return this._http.delete(url, httpOptions) as Observable<IProduct>;
     }
 
-    updateProduct (product: IProduct): Observable<IProduct> {
+    putProduct (productID: number, product: IProduct): Observable<IProduct> {
+        const url = `${this._productURL}${productID}`;
         httpOptions.headers =
             httpOptions.headers.set('Authorization', 'my-new-auth-token');
-
-        return this._http.put<IProduct>(this._productURL, product, httpOptions);
+        return this._http.put<IProduct>(url, product, httpOptions);
     }
 
 

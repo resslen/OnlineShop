@@ -10,6 +10,7 @@ import {ProductService} from './product.service';
 })
 export class ProductModifyComponent implements OnInit {
     product: IProduct;
+    allertVisible: boolean;
     id: number;
     constructor(private _route: ActivatedRoute,
                 private _router: Router,
@@ -38,6 +39,24 @@ export class ProductModifyComponent implements OnInit {
         this._router.navigate(['/products']);
     }
 
+    updateProduct(productName: string,
+                  productCode: string,
+                  releaseDate: string,
+                  price: number,
+                  description: string,
+                  starRating: number,
+                  imageUrl: string ): void {
+        const newProduct: IProduct = {productName , productCode, releaseDate, price, description, starRating, imageUrl} as IProduct;
+        this._ProductService.putProduct(this.id, newProduct)
+            .subscribe(
+                result => {
+                    this.onBack();
+                },
+                error => {
+                    this.allertVisible = true;
+                }
+            );
+    }
 }
 
 
