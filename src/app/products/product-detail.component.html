@@ -3,13 +3,14 @@
     <br>
     <div class="card">
         <div class="card-body">
-            <img class="img-fluid" src="{{product.imageUrl}}" alt="item image" style="width: 300px">
-            <h4 class="card-title">{{product.productName}}</h4>
-            <p class="card-text">{{product.description}}</p>
+            <h3 class="card-title text-center">{{product.productName}}</h3>
+            <hr>
+            <img class="img-fluid mx-auto d-block" src="{{product.imageUrl}}" alt="item image" style="width: 300px">
         </div>
         <ul class="list-group list-group-flush">
-            <li class="list-group-item"><b>KodProduktu: </b>{{product.productCode}}</li>
-            <li class="list-group-item"><b>Data Wprowadzenia: </b>{{product.releaseDate}}</li>
+            <li class="list-group-item"><b>Opis produktu: </b>{{product.description}}</li>
+            <li class="list-group-item"><b>Kod produktu: </b>{{product.productCode}}</li>
+            <li class="list-group-item"><b>Data wprowadzenia: </b>{{product.releaseDate}}</li>
             <li class="list-group-item"><b>Cena: </b>{{product.price | currency:'PLN':true:'1.2-2'}}</li>
             <li class="list-group-item"><b>Opinia: </b>{{product.starRating}}</li>
         </ul>

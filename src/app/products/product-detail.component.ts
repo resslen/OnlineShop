@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {IProduct} from './product';
 import {ActivatedRoute, Router} from '@angular/router';
+import {ProductService} from './product.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -9,22 +10,28 @@ import {ActivatedRoute, Router} from '@angular/router';
 })
 export class ProductDetailComponent implements OnInit {
   product: IProduct;
-
+  id: number;
   constructor(private _route: ActivatedRoute,
-              private _router: Router) { }
+              private _router: Router,
+              private _ProductService: ProductService) { }
 
   ngOnInit() {
-    const id = this._route.snapshot.paramMap.get('id');
-    this.product = {
-        "_id": id,
-        "productName": "Garden Cart",
-        "productCode": "GDN-0023",
-        "releaseDate": "March 18, 2016",
-        "description": "15 gallon capacity rolling garden cart",
-        "price": 32.99,
-        "starRating": 4.2,
-        "imageUrl": "http://openclipart.org/image/300px/svg_to_png/58471/garden_cart.png"
-    };
+      this.product = {
+          _id: '',
+          productName: '',
+          productCode: '',
+          releaseDate: '',
+          price: undefined,
+          description: '',
+          starRating: undefined,
+          imageUrl: ''};
+      this._route.params.subscribe(params => {
+          this.id = params['id'];
+          this._ProductService.getProductByID(this.id)
+              .subscribe(products => {
+                  this.product = products;
+              });
+      });
   }
 
   onBack(): void {
