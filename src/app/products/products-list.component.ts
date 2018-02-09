@@ -50,4 +50,12 @@ export class ProductListComponent implements OnInit {
             }
         );
     }
+
+    isLogged() {
+        if (localStorage.getItem('currentUser')) {
+            return true;
+        }else {
+            return false;
+        }
+    }
 }

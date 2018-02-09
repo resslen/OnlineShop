@@ -38,4 +38,11 @@ export class ProductDetailComponent implements OnInit {
     this._router.navigate(['/products']);
   }
 
+    isLogged() {
+        if (localStorage.getItem('currentUser')) {
+            return true;
+        }else {
+            return false;
+        }
+    }
 }

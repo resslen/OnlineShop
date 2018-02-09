@@ -13,7 +13,7 @@
                 <input type='text'
                        [(ngModel)]="listFilter"/>
             </div>
-            <div class='ml-auto'>
+            <div class='ml-auto' *ngIf="isLogged()">
                 <a [routerLink]="['/product/create']"><button class="btn btn-primary">Dodaj Produkt</button></a>
             </div>
         </div>
@@ -29,7 +29,7 @@
                     <th>Wstawiono</th>
                     <th>Cena</th>
                     <th>Opinia klientów</th>
-                    <th>Dostępne funkcje</th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -49,7 +49,7 @@
                     <td>{{ product.price | currency:'PLN':true:'1.2-2' }}</td>
                     <td>{{ product.starRating }}</td>
                     <td>
-                        <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                        <div class="btn-group" role="group" *ngIf="isLogged()" aria-label="Button group with nested dropdown">
                             <button type="button" class="btn btn-primary">Zamów</button>
                             <a [routerLink]="['/product/modify', product._id]">
                                 <button type="button" class="btn btn-warning">Modyfikuj</button></a>

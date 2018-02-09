@@ -16,7 +16,10 @@
     </ul>
     <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-            <a class="nav-link" [routerLink]="['/login']">Logowanie</a>
+            <a class="nav-link" *ngIf="!isLogged()" [routerLink]="['/login']">Logowanie</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link btn" *ngIf="isLogged()" (click)="logout()">Wyloguj</a>
         </li>
     </ul>
   </nav>
