@@ -13,6 +13,7 @@ import { AlertService, UserService } from '../_services/index';
 export class RegisterComponent {
     model: any = {};
     loading = false;
+    confirmPassword: '';
 
     constructor(
         private router: Router,
@@ -24,7 +25,7 @@ export class RegisterComponent {
         this.userService.create(this.model)
             .subscribe(
                 data => {
-                    this.alertService.success('Registration successful', true);
+                    this.alertService.success('Rejestracja pomyślna', true);
                     this.router.navigate(['/login']);
                 },
                 error => {

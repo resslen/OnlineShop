@@ -2,14 +2,14 @@
 <div class="col-md-6 col-md-offset-3">
     <h2>Rejestracja</h2>
     <form name="form" (ngSubmit)="f.form.valid && register()" #f="ngForm" novalidate>
-        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !email.valid }">
             <label for="email">Adres email</label>
-            <input type="text" class="form-control" name="username" [(ngModel)]="model.username" #username="ngModel" required />
-            <div *ngIf="f.submitted && !username.valid" class="help-block">Adres email jest wymagany</div>
+            <input type="text" class="form-control" name="email" [(ngModel)]="model.email" #email="ngModel" required />
+            <div *ngIf="f.submitted && !email.valid" class="help-block">Adres email jest wymagany</div>
         </div>
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
             <label for="username">Nazwa użytkownika</label>
-            <input type="text" class="form-control" name="username" [(ngModel)]="model.username" #lastName="ngModel" required />
+            <input type="text" class="form-control" name="username" [(ngModel)]="model.username" #username="ngModel" required />
             <div *ngIf="f.submitted && !username.valid" class="help-block">Nazwa użytkownika jest wymagana</div>
         </div>
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
@@ -19,8 +19,8 @@
         </div>
         <div class="form-group">
             <label for="confirmPassword">Powtórz hasło</label>
-            <input type="password" class="form-control" name="confirmPassword" [(ngModel)]="model.confirmPassword" #confirmPassword="ngModel" required />
-            <div *ngIf="f.submitted && !(model.password === model.confirmPassword)" class="help-block">Hasło niezgodne</div>
+            <input type="password" class="form-control" name="confirmPassword" [(ngModel)]="confirmPassword"/>
+            <div *ngIf="f.submitted && !(model.password === confirmPassword)" class="help-block">Hasło niezgodne</div>
         </div>
         <div class="form-group">
             <button [disabled]="loading" class="btn btn-primary">Zarejestruj</button>
