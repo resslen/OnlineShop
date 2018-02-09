@@ -24,7 +24,8 @@ export class ProductDetailComponent implements OnInit {
           price: undefined,
           description: '',
           starRating: undefined,
-          imageUrl: ''};
+          imageUrl: '',
+          amount: undefined};
       this._route.params.subscribe(params => {
           this.id = params['id'];
           this._ProductService.getProductByID(this.id)

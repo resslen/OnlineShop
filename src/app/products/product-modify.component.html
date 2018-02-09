@@ -36,6 +36,12 @@
     </div>
 </div>
 <div class="form-group row">
+    <label for="product-modify-amount" class="col-2 col-form-label">Ilość sztuk</label>
+    <div class="col-10">
+        <input class="form-control" type="text" [(ngModel)]="product.amount" id="product-modify-amount">
+    </div>
+</div>
+<div class="form-group row">
     <label for="product-modify-description" class="col-2 col-form-label">Opis</label>
     <div class="col-10">
         <textarea class="form-control" type="text" [(ngModel)]="product.description" rows="5" id="product-modify-description"></textarea>
@@ -44,5 +50,6 @@
 <div>
     <br>
     <button class="btn btn-primary" (click)="onBack()">Powrót</button>
-    <button class="btn btn-primary" (click)="updateProduct(product.productName , product.productCode, product.releaseDate, product.price, product.description, product.starRating, product.imageUrl)">Akceptuj modyfikacje</button>
+    <button class="btn btn-primary" (click)="updateProduct(product.productName,
+    product.productCode, product.releaseDate, product.price, product.description, product.starRating, product.imageUrl, product.amount)">Akceptuj modyfikacje</button>
 </div>

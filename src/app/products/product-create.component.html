@@ -39,6 +39,12 @@
     </div>
 </div>
 <div class="form-group row">
+    <label for="product-create-amount" class="col-2 col-form-label">Ilość sztuk</label>
+    <div class="col-10">
+        <input class="form-control" type="text" [(ngModel)]="_amount" id="product-create-amount">
+    </div>
+</div>
+<div class="form-group row">
     <label for="product-create-description" class="col-2 col-form-label">Opis</label>
     <div class="col-10">
         <textarea class="form-control" type="text" [(ngModel)]="_description" rows="5" id="product-create-description"></textarea>
@@ -47,5 +53,5 @@
 <div>
     <br>
     <button class="btn btn-primary" (click)="onBack()">Powrót</button>
-    <button class="btn btn-primary" (click)="createProduct(_productName , _productCode, _releaseDate, _price, _description, _starRating, _imageUrl)">Utwórz produkt</button>
+    <button class="btn btn-primary" (click)="createProduct(_productName , _productCode, _releaseDate, _price, _description, _starRating, _imageUrl, _amount)">Utwórz produkt</button>
 </div>

@@ -18,6 +18,7 @@ export class ProductCreateComponent implements OnInit {
     _description: '';
     _starRating: '';
     _imageUrl: '';
+    _amount: '';
     allertVisible: boolean;
 
     constructor(private _route: ActivatedRoute,
@@ -37,8 +38,9 @@ export class ProductCreateComponent implements OnInit {
                   price: number,
                   description: string,
                   starRating: number,
-                  imageUrl: string ): void {
-        const newProduct: IProduct = {productName , productCode, releaseDate, price, description, starRating, imageUrl} as IProduct;
+                  imageUrl: string,
+                  amount: number): void {
+        const newProduct: IProduct = {productName , productCode, releaseDate, price, description, starRating, imageUrl, amount} as IProduct;
         this._productService.postProduct(newProduct)
             .subscribe(
                 result => {

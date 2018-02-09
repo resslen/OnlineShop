@@ -25,7 +25,8 @@ export class ProductModifyComponent implements OnInit {
             price: undefined,
             description: '',
             starRating: undefined,
-            imageUrl: ''};
+            imageUrl: '',
+            amount: undefined};
         this._route.params.subscribe(params => {
             this.id = params['id'];
             this._ProductService.getProductByID(this.id)
@@ -45,8 +46,9 @@ export class ProductModifyComponent implements OnInit {
                   price: number,
                   description: string,
                   starRating: number,
-                  imageUrl: string ): void {
-        const newProduct: IProduct = {productName , productCode, releaseDate, price, description, starRating, imageUrl} as IProduct;
+                  imageUrl: string,
+                  amount: number): void {
+        const newProduct: IProduct = {productName , productCode, releaseDate, price, description, starRating, imageUrl, amount} as IProduct;
         this._ProductService.putProduct(this.id, newProduct)
             .subscribe(
                 result => {

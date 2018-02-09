@@ -29,6 +29,7 @@
                     <th>Wstawiono</th>
                     <th>Cena</th>
                     <th>Opinia klientów</th>
+                    <th>Dostępność</th>
                     <th></th>
                 </tr>
                 </thead>
@@ -48,6 +49,7 @@
                     <td>{{ product.releaseDate }}</td>
                     <td><b>{{ product.price | currency:'PLN':true:'1.2-2' }}</b></td>
                     <td>{{ product.starRating }}</td>
+                    <td>{{ product.amount }}</td>
                     <td>
                         <div class="btn-group" role="group" *ngIf="isLogged()" aria-label="Button group with nested dropdown">
                             <button type="button" class="btn btn-primary">Zamów</button>
