@@ -7,7 +7,6 @@ import {Router} from '@angular/router';
     templateUrl: './products-list.component.html'
 })
 export class ProductListComponent implements OnInit {
-    pageTitle: 'Product List';
     _listFilter: string;
     allertVisible: boolean;
 

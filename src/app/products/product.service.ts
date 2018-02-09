@@ -49,6 +49,10 @@ export class ProductService {
         return this._http.put<IProduct>(url, product, httpOptions);
     }
 
+    getPromotedProducts(): Observable<IProduct[]> {
+        return this._http.get<IProduct[]>('http://localhost:3000/products/promoted')
+            .catch(this.handleError);
+    }
 
     private handleError(err: HttpErrorResponse) {
         console.error(err.message);
