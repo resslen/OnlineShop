@@ -49,10 +49,11 @@
                     <td>{{ product.releaseDate }}</td>
                     <td><b>{{ product.price | currency:'PLN':true:'1.2-2' }}</b></td>
                     <td>{{ product.starRating }}</td>
-                    <td>{{ product.amount }}</td>
-                    <td>
+                    <td *ngIf="product.amount !== 0">{{ product.amount }}</td>
+                    <td class="noProduct" type="text" *ngIf="product.amount === 0">Produkt niedostępny</td>
+                    <td class="ml-auto text-right">
                         <div class="btn-group" role="group" *ngIf="isLogged()" aria-label="Button group with nested dropdown">
-                            <button type="button" class="btn btn-primary">Zamów</button>
+                            <button type="button" class="btn btn-primary" *ngIf="product.amount !== 0">Zamów</button>
                             <a [routerLink]="['/product/modify', product._id]">
                                 <button type="button" class="btn btn-warning">Modyfikuj</button></a>
                             <button type="button" class="btn btn-danger" (click)="delete(product._id)">Usuń</button>

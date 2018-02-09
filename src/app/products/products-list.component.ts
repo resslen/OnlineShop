@@ -4,7 +4,8 @@ import {ProductService} from './product.service';
 import {Router} from '@angular/router';
 
 @Component({
-    templateUrl: './products-list.component.html'
+    templateUrl: './products-list.component.html',
+    styleUrls: ['products-list.component.css']
 })
 export class ProductListComponent implements OnInit {
     _listFilter: string;

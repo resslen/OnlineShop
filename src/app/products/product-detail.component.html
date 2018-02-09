@@ -16,7 +16,7 @@
         </ul>
         <div class="card-body">
             <button class="btn btn-primary" (click)="onBack()">Powrót</button>
-            <button class="btn btn-primary" *ngIf="isLogged()">Zakup Produkt</button>
+            <button class="btn btn-primary" *ngIf="isLogged() && product.amount !== 0">Zakup Produkt</button>
         </div>
     </div>
 </div>
