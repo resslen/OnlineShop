@@ -56,6 +56,12 @@ export class ProductService {
             .catch(this.handleError);
     }
 
+    buyProduct(productID: number): Observable<IProduct> {
+        const url = `${'http://localhost:3000/products/buy/'}${productID}`;
+        console.log(url);
+        return this._http.get<IProduct>(url, httpOptions) as Observable<IProduct>;
+    }
+
     private handleError(err: HttpErrorResponse) {
         console.error(err.message);
         return Observable.throw(err.message);

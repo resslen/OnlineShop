@@ -45,7 +45,6 @@ export class ProductListComponent implements OnInit {
                 this.ngOnInit();
             },
             error => {
-                console.log(productID);
                 this.allertVisible = true;
             }
         );
@@ -57,5 +56,15 @@ export class ProductListComponent implements OnInit {
         }else {
             return false;
         }
+    }
+    buyProduct(productID: number): void {
+        this._productService.buyProduct(productID).subscribe(
+            result => {
+                this.ngOnInit();
+            },
+            error => {
+                this.allertVisible = true;
+            }
+        );
     }
 }

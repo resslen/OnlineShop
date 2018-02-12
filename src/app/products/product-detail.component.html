@@ -1,3 +1,6 @@
+<div class="alert alert-danger" role="alert" *ngIf="allertVisible">
+    <strong>Wystąpił bład</strong> Dlaczego? Nie wiem, ale się domyślam.
+</div>
 <div class="container">
     <br>
     <br>
@@ -16,7 +19,7 @@
         </ul>
         <div class="card-body">
             <button class="btn btn-primary" (click)="onBack()">Powrót</button>
-            <button class="btn btn-primary" *ngIf="isLogged() && product.amount !== 0">Zakup Produkt</button>
+            <button class="btn btn-primary" *ngIf="isLogged() && product.amount !== 0" (click)="buyProduct(product._id)">Zakup Produkt</button>
         </div>
     </div>
 </div>

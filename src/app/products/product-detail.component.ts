@@ -11,7 +11,9 @@ import {ProductService} from './product.service';
 export class ProductDetailComponent implements OnInit {
   product: IProduct;
   id: number;
-  constructor(private _route: ActivatedRoute,
+  allertVisible: boolean;
+
+    constructor(private _route: ActivatedRoute,
               private _router: Router,
               private _ProductService: ProductService) { }
 
@@ -45,5 +47,16 @@ export class ProductDetailComponent implements OnInit {
         }else {
             return false;
         }
+    }
+
+    buyProduct(productID: number): void {
+        this._ProductService.buyProduct(productID).subscribe(
+            result => {
+                this._router.navigate(['/products']);
+            },
+            error => {
+                this.allertVisible = true;
+            }
+        );
     }
 }
