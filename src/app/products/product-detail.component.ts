@@ -12,6 +12,8 @@ export class ProductDetailComponent implements OnInit {
   product: IProduct;
   id: number;
   allertVisible: boolean;
+  errorVisible = false;
+  productVisible = false;
 
     constructor(private _route: ActivatedRoute,
               private _router: Router,
@@ -33,6 +35,10 @@ export class ProductDetailComponent implements OnInit {
           this._ProductService.getProductByID(this.id)
               .subscribe(products => {
                   this.product = products;
+                  this.productVisible = true;
+              }, error => {
+                  this.errorVisible = true;
+                  console.log(error);
               });
       });
   }

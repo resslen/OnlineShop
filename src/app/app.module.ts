@@ -9,7 +9,6 @@ import {WelcomeComponent} from './home/index';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {routing} from './app.routing';
 import {FormsModule} from '@angular/forms';
-import {AlertComponent} from './_directives/index';
 import {LoginComponent} from './login/index';
 import {RegisterComponent} from './register/index';
 import {AuthGuard, ProductGuard} from './_guards/index';
@@ -17,7 +16,9 @@ import {AlertService, AuthenticationService, UserService} from './_services/inde
 import {JwtInterceptor} from './_helpers/index';
 import {ProductCreateComponent} from './products/product-create.component';
 import {ProductModifyComponent} from './products/product-modify.component';
-
+import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
+import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
+import {NotFoundComponent} from './_directives/notFound.component';
 
 @NgModule({
   declarations: [
@@ -25,16 +26,18 @@ import {ProductModifyComponent} from './products/product-modify.component';
     ProductListComponent,
     ProductDetailComponent,
     WelcomeComponent,
-    AlertComponent,
     LoginComponent,
     RegisterComponent,
     ProductCreateComponent,
-    ProductModifyComponent
+    ProductModifyComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
+    LoadingBarHttpClientModule,
+    LoadingBarRouterModule,
     routing
   ],
   providers: [

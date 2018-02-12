@@ -1,25 +1,28 @@
-<div class="alert alert-danger" role="alert" *ngIf="allertVisible">
-    <strong>Wystąpił bład</strong> Dlaczego? Nie wiem, ale się domyślam.
-</div>
-<div class="container">
-    <br>
-    <br>
-    <div class="card">
-        <div class="card-body">
-            <h3 class="card-title text-center">{{product.productName}}</h3>
-            <hr>
-            <img class="img-fluid mx-auto d-block" src="{{product.imageUrl}}" alt="item image" style="width: 300px">
-        </div>
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item"><b>Opis produktu: </b>{{product.description}}</li>
-            <li class="list-group-item"><b>Kod produktu: </b>{{product.productCode}}</li>
-            <li class="list-group-item"><b>Data wprowadzenia: </b>{{product.releaseDate}}</li>
-            <li class="list-group-item"><b>Cena: </b>{{product.price | currency:'PLN':true:'1.2-2'}}</li>
-            <li class="list-group-item"><b>Opinia: </b>{{product.starRating}}</li>
-        </ul>
-        <div class="card-body">
-            <button class="btn btn-primary" (click)="onBack()">Powrót</button>
-            <button class="btn btn-primary" *ngIf="isLogged() && product.amount !== 0" (click)="buyProduct(product._id)">Zakup Produkt</button>
+<div *ngIf="productVisible">
+    <div class="alert alert-danger" role="alert" *ngIf="allertVisible">
+        <strong>Wystąpił bład</strong> Dlaczego? Nie wiem, ale się domyślam.
+    </div>
+    <div class="container">
+        <br>
+        <br>
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-title text-center">{{product.productName}}</h3>
+                <hr>
+                <img class="img-fluid mx-auto d-block" src="{{product.imageUrl}}" alt="item image" style="width: 300px">
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><b>Opis produktu: </b>{{product.description}}</li>
+                <li class="list-group-item"><b>Kod produktu: </b>{{product.productCode}}</li>
+                <li class="list-group-item"><b>Data wprowadzenia: </b>{{product.releaseDate}}</li>
+                <li class="list-group-item"><b>Cena: </b>{{product.price | currency:'PLN':true:'1.2-2'}}</li>
+                <li class="list-group-item"><b>Opinia: </b>{{product.starRating}}</li>
+            </ul>
+            <div class="card-body">
+                <button class="btn btn-primary" (click)="onBack()">Powrót</button>
+                <button class="btn btn-primary" *ngIf="isLogged() && product.amount !== 0" (click)="buyProduct(product._id)">Zakup Produkt</button>
+            </div>
         </div>
     </div>
 </div>
+<app-not-found [visible]="errorVisible"></app-not-found>
