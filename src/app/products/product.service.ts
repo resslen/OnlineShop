@@ -8,19 +8,23 @@ import 'rxjs/add/observable/throw';
 import {_catch} from 'rxjs/operator/catch';
 import {catchError} from 'rxjs/operators';
 import {errorHandler} from '@angular/platform-browser/src/browser';
+import {AuthenticationService} from '../_services';
+import {RequestOptions} from '@angular/http';
+import {headersToString} from 'selenium-webdriver/http';
 
-const httpOptions = {
-    headers: new HttpHeaders({
-        'Content-Type':  'application/json',
-        'Authorization': 'my-auth-token'
-    })
-};
+    const httpOptions = {
+        headers: new HttpHeaders({
+            'Content-Type':  'application/json',
+            'x-access-token': JSON.parse(localStorage.getItem('currentUser'))
+        })
+    };
 
 @Injectable()
 export class ProductService {
     private _productURL = 'http://localhost:3000/products/';
     status: boolean;
-    constructor(private _http: HttpClient) {}
+    constructor(private _http: HttpClient,
+                private authenticationService: AuthenticationService) {}
 
     getProducts(): Observable<IProduct[]> {
         return this._http.get<IProduct[]>(this._productURL)
@@ -44,13 +48,11 @@ export class ProductService {
 
     putProduct (productID: number, product: IProduct): Observable<IProduct> {
         const url = `${this._productURL}${productID}`;
-        httpOptions.headers =
-            httpOptions.headers.set('Authorization', 'my-new-auth-token');
         return this._http.put<IProduct>(url, product, httpOptions);
     }
 
     getPromotedProducts(): Observable<IProduct[]> {
-        return this._http.get<IProduct[]>('http://localhost:3000/products/promoted')
+        return this._http.get<IProduct[]>('http://localhost:3000/products/home/promoted')
             .catch(this.handleError);
     }
 

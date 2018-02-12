@@ -13,7 +13,7 @@ export class WelcomeComponent implements OnInit {
     constructor(private _productService: ProductService) {}
 
     ngOnInit(): void {
-        this._productService.getProducts()
+        this._productService.getPromotedProducts()
             .subscribe(products => {
                 this.products = products;
             });
