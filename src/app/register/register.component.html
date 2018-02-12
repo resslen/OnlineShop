@@ -6,6 +6,7 @@
             <label for="email">Adres email</label>
             <input type="text" class="form-control" name="email" [(ngModel)]="model.email" #email="ngModel" required />
             <div *ngIf="f.submitted && !email.valid" class="help-block">Adres email jest wymagany</div>
+
         </div>
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
             <label for="username">Nazwa użytkownika</label>

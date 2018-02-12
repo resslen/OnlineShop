@@ -7,19 +7,13 @@ import {Alert} from 'selenium-webdriver';
 @Component({
     selector: 'app-product-create',
     templateUrl: './product-create.component.html',
-    styleUrls: []
+    styleUrls: ['./product-create.component.css']
 })
 export class ProductCreateComponent implements OnInit {
     products: IProduct[];
-    _productName: '';
-    _productCode: '';
-    _releaseDate: '';
-    _price: '';
-    _description: '';
-    _starRating: '';
-    _imageUrl: '';
-    _amount: '';
+    model: any = {};
     allertVisible: boolean;
+    loading = false;
 
     constructor(private _route: ActivatedRoute,
                 private _router: Router,
@@ -40,16 +34,30 @@ export class ProductCreateComponent implements OnInit {
                   starRating: number,
                   imageUrl: string,
                   amount: number): void {
-        const newProduct: IProduct = {productName , productCode, releaseDate, price, description, starRating, imageUrl, amount} as IProduct;
-        this._productService.postProduct(newProduct)
-            .subscribe(
-                result => {
-                    this.onBack();
-                },
-                error => {
-                    this.allertVisible = true;
-                }
-            );
+        this.loading = true;
+        if ((price || starRating || amount) < 0) {
+            this.allertVisible = true;
+            this.loading = false;
+        }else {
+            const newProduct: IProduct = {  productName,
+                                            productCode,
+                                            releaseDate,
+                                            price,
+                                            description,
+                                            starRating,
+                                            imageUrl,
+                                            amount} as IProduct;
+            this._productService.postProduct(newProduct)
+                .subscribe(
+                    result => {
+                        this.onBack();
+                    },
+                    error => {
+                        this.allertVisible = true;
+                        this.loading = false;
+                    }
+                );
+        }
     }
 
 }
