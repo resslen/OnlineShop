@@ -2,9 +2,11 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
+import {JwtHelper} from 'angular2-jwt';
 
 @Injectable()
 export class AuthenticationService {
+    jwtHelper: JwtHelper = new JwtHelper();
     constructor(private http: HttpClient) { }
 
     login(email: string, password: string) {
@@ -22,6 +24,7 @@ export class AuthenticationService {
                 if (user && user.token) {
                     // store user details and jwt token in local storage to keep user logged in between page refreshes
                     localStorage.setItem('currentUser', JSON.stringify(user.token));
+                    const payload = this.jwtHelper.decodeToken(user.token);
                 }
                 return user;
             });
@@ -30,5 +33,6 @@ export class AuthenticationService {
     logout() {
         // remove user from local storage to log user out
         localStorage.removeItem('currentUser');
+
     }
 }

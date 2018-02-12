@@ -42,7 +42,7 @@ export class ProductModifyComponent implements OnInit {
                   imageUrl: string,
                   amount: number): void {
         this.loading = true;
-        if ((price || starRating || amount) < 0) {
+        if (price < 0 || starRating < 0 || amount < 0 ) {
             this.allertVisible = true;
             this.loading = false;
         }else {
