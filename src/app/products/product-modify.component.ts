@@ -6,32 +6,25 @@ import {ProductService} from './product.service';
 @Component({
     selector: 'app-product-modify',
     templateUrl: './product-modify.component.html',
-    styleUrls: []
+    styleUrls: ['./product-modify.component.css']
 })
 export class ProductModifyComponent implements OnInit {
     product: IProduct;
     allertVisible: boolean;
     id: number;
+    model: any = {};
+    loading = false;
     constructor(private _route: ActivatedRoute,
                 private _router: Router,
                 private _ProductService: ProductService) { }
 
     ngOnInit() {
-        this.product = {
-            _id: '',
-            productName: '',
-            productCode: '',
-            releaseDate: '',
-            price: undefined,
-            description: '',
-            starRating: undefined,
-            imageUrl: '',
-            amount: undefined};
+
         this._route.params.subscribe(params => {
             this.id = params['id'];
             this._ProductService.getProductByID(this.id)
                 .subscribe(products => {
-                    this.product = products;
+                    this.model = products;
                 });
         });
     }
@@ -48,16 +41,30 @@ export class ProductModifyComponent implements OnInit {
                   starRating: number,
                   imageUrl: string,
                   amount: number): void {
-        const newProduct: IProduct = {productName , productCode, releaseDate, price, description, starRating, imageUrl, amount} as IProduct;
-        this._ProductService.putProduct(this.id, newProduct)
-            .subscribe(
-                result => {
-                    this.onBack();
-                },
-                error => {
-                    this.allertVisible = true;
-                }
-            );
+        this.loading = true;
+        if ((price || starRating || amount) < 0) {
+            this.allertVisible = true;
+            this.loading = false;
+        }else {
+            const newProduct: IProduct = {  productName,
+                productCode,
+                releaseDate,
+                price,
+                description,
+                starRating,
+                imageUrl,
+                amount} as IProduct;
+            this._ProductService.putProduct(this.id, newProduct)
+                .subscribe(
+                    result => {
+                        this.onBack();
+                    },
+                    error => {
+                        this.allertVisible = true;
+                        this.loading = false;
+                    }
+                );
+        }
     }
 }
 

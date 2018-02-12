@@ -1,55 +1,67 @@
 <br>
-<div class="form-group row">
-    <label for="product-modify-name" class="col-2 col-form-label">Nazwa Produktu</label>
-    <div class="col-10">
-        <input class="form-control" type="text" [(ngModel)]="product.productName" id="product-modify-name">
+<div class="alert alert-danger" role="alert" *ngIf="allertVisible">
+    <strong>Wystąpił bład</strong> Popraw wprowadzone dane.
+</div>
+<form name="form" (ngSubmit)="f.form.valid && updateProduct(model.productName, model.productCode, model.releaseDate, model.price, model.description, model.starRating, model.imageUrl, model.amount)" #f="ngForm" novalidate>
+    <div class="form-group row" [ngClass]="{ 'has-error': f.submitted && !productName.valid }">
+        <label for="product-create-name" class="col-2 col-form-label">Nazwa Produktu</label>
+        <div class="col-10">
+            <input class="form-control" type="text" name="productName" [(ngModel)]="model.productName" #productName="ngModel" required>
+            <div *ngIf="f.submitted && !productName.valid" class="help-block">Nazwa produktu jest wymagana</div>
+        </div>
     </div>
-</div>
-<div class="form-group row">
-    <label for="product-modify-code" class="col-2 col-form-label">Kod produktu</label>
-    <div class="col-10">
-        <input class="form-control" type="text" [(ngModel)]="product.productCode" id="product-modify-code">
+    <div class="form-group row" [ngClass]="{ 'has-error': f.submitted && !productCode.valid }">
+        <label for="product-create-code" class="col-2 col-form-label">Kod produktu</label>
+        <div class="col-10">
+            <input class="form-control" type="text" name="productCode" [(ngModel)]="model.productCode" #productCode="ngModel" required>
+            <div *ngIf="f.submitted && !productCode.valid" class="help-block">Kod produktu jest wymagany</div>
+        </div>
     </div>
-</div>
-<div class="form-group row">
-    <label for="product-modify-imageURL" class="col-2 col-form-label">URL zdjęcia</label>
-    <div class="col-10">
-        <input class="form-control" type="url" [(ngModel)]="product.imageUrl" id="product-modify-imageURL">
+    <div class="form-group row" [ngClass]="{ 'has-error': f.submitted && !imageURL.valid }">
+        <label for="product-create-imageURL" class="col-2 col-form-label">URL zdjęcia</label>
+        <div class="col-10">
+            <input class="form-control" type="url" name="imageURL" [(ngModel)]="model.imageUrl" #imageURL="ngModel" required>
+            <div *ngIf="f.submitted && !imageURL.valid" class="help-block">Podaj URL zdjęcia</div>
+        </div>
     </div>
-</div>
-<div class="form-group row">
-    <label for="product-modify-date" class="col-2 col-form-label">Data wstawienia</label>
-    <div class="col-10">
-        <input class="form-control" type="date" [(ngModel)]="product.releaseDate" id="product-modify-date">
+    <div class="form-group row" [ngClass]="{ 'has-error': f.submitted && !releaseDate.valid }">
+        <label for="product-create-date" class="col-2 col-form-label">Data wstawienia</label>
+        <div class="col-10">
+            <input class="form-control" type="date" name="releaseDate" [(ngModel)]="model.releaseDate" #releaseDate="ngModel" required>
+            <div *ngIf="f.submitted && !releaseDate.valid" class="help-block">Data wstawienia jest wymagana</div>
+        </div>
     </div>
-</div>
-<div class="form-group row">
-    <label for="product-modify-price" class="col-2 col-form-label">Cena produktu</label>
-    <div class="col-10">
-        <input class="form-control" type="text" [(ngModel)]="product.price" id="product-modify-price">
+    <div class="form-group row" [ngClass]="{ 'has-error': f.submitted && !price.valid }">
+        <label for="product-create-price" class="col-2 col-form-label">Cena produktu</label>
+        <div class="col-10">
+            <input class="form-control" type="number" step="0.01" min="0" name="price" [(ngModel)]="model.price" #price="ngModel" required>
+            <div *ngIf="f.submitted && !price.valid" class="help-block">Kwota produktu jest wymagana</div>
+        </div>
     </div>
-</div>
-<div class="form-group row">
-    <label for="product-modify-starRating" class="col-2 col-form-label">Opinia</label>
-    <div class="col-10">
-        <input class="form-control" type="text" [(ngModel)]="product.starRating" id="product-modify-starRating">
+    <div class="form-group row" [ngClass]="{ 'has-error': f.submitted && !starRating.valid }">
+        <label for="product-create-starRating" class="col-2 col-form-label">Opinia</label>
+        <div class="col-10">
+            <input class="form-control" type="number" step="0.1" min="0" max="5" name="starRating" [(ngModel)]="model.starRating" #starRating="ngModel" required>
+            <div *ngIf="f.submitted && !starRating.valid" class="help-block">Opinia jest wymagana</div>
+        </div>
     </div>
-</div>
-<div class="form-group row">
-    <label for="product-modify-amount" class="col-2 col-form-label">Ilość sztuk</label>
-    <div class="col-10">
-        <input class="form-control" type="text" [(ngModel)]="product.amount" id="product-modify-amount">
+    <div class="form-group row" [ngClass]="{ 'has-error': f.submitted && !amount.valid }">
+        <label for="product-create-amount" class="col-2 col-form-label">Ilość sztuk</label>
+        <div class="col-10">
+            <input class="form-control" type="number" min="0" name="amount" [(ngModel)]="model.amount" #amount="ngModel" required>
+            <div *ngIf="f.submitted && !amount.valid" class="help-block">Podaj ilość wystawianego produktu</div>
+        </div>
     </div>
-</div>
-<div class="form-group row">
-    <label for="product-modify-description" class="col-2 col-form-label">Opis</label>
-    <div class="col-10">
-        <textarea class="form-control" type="text" [(ngModel)]="product.description" rows="5" id="product-modify-description"></textarea>
+    <div class="form-group row" [ngClass]="{ 'has-error': f.submitted && !description.valid }">
+        <label for="product-create-description" class="col-2 col-form-label">Opis</label>
+        <div class="col-10">
+            <textarea class="form-control" type="text" name="description" [(ngModel)]="model.description" rows="5" #description="ngModel" required></textarea>
+            <div *ngIf="f.submitted && !description.valid" class="help-block">Opis jest wymagany</div>
+        </div>
     </div>
-</div>
-<div>
-    <br>
-    <button class="btn btn-primary" (click)="onBack()">Powrót</button>
-    <button class="btn btn-primary" (click)="updateProduct(product.productName,
-    product.productCode, product.releaseDate, product.price, product.description, product.starRating, product.imageUrl, product.amount)">Akceptuj modyfikacje</button>
-</div>
+    <div>
+        <br>
+        <button class="btn btn-primary" (click)="onBack()">Powrót</button>
+        <button class="btn btn-primary" [disabled]="loading">Akceptuj modyfikacje</button>
+    </div>
+</form>
