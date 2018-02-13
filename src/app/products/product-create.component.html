@@ -6,14 +6,14 @@
     <div class="form-group row" [ngClass]="{ 'has-error': f.submitted && !productName.valid }">
         <label for="product-create-name" class="col-2 col-form-label">Nazwa Produktu</label>
         <div class="col-10">
-            <input class="form-control" type="text" name="productName" [(ngModel)]="model.productName" #productName="ngModel" required>
+            <input class="form-control" type="text" name="productName" minlength="3" maxlength="100" [(ngModel)]="model.productName" #productName="ngModel" required>
             <div *ngIf="f.submitted && !productName.valid" class="help-block">Nazwa produktu jest wymagana</div>
         </div>
     </div>
     <div class="form-group row" [ngClass]="{ 'has-error': f.submitted && !productCode.valid }">
         <label for="product-create-code" class="col-2 col-form-label">Kod produktu</label>
         <div class="col-10">
-            <input class="form-control" type="text" name="productCode" [(ngModel)]="model.productCode" #productCode="ngModel" required>
+            <input class="form-control" type="text" name="productCode" minlength="3" maxlength="30" [(ngModel)]="model.productCode" #productCode="ngModel" required>
             <div *ngIf="f.submitted && !productCode.valid" class="help-block">Kod produktu jest wymagany</div>
         </div>
     </div>
@@ -55,7 +55,7 @@
     <div class="form-group row" [ngClass]="{ 'has-error': f.submitted && !description.valid }">
         <label for="product-create-description" class="col-2 col-form-label">Opis</label>
         <div class="col-10">
-            <textarea class="form-control" type="text" name="description" [(ngModel)]="model.description" rows="5" #description="ngModel" required></textarea>
+            <textarea class="form-control" type="text" name="description" minlength="3" maxlength="10000" [(ngModel)]="model.description" rows="5" #description="ngModel" required></textarea>
             <div *ngIf="f.submitted && !description.valid" class="help-block">Opis jest wymagany</div>
         </div>
     </div>

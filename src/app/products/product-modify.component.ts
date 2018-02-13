@@ -15,6 +15,7 @@ export class ProductModifyComponent implements OnInit {
     model: any = {};
     loading = false;
     errorVisible = false;
+    productVisible = false;
     constructor(private _route: ActivatedRoute,
                 private _router: Router,
                 private _ProductService: ProductService) { }
@@ -26,6 +27,7 @@ export class ProductModifyComponent implements OnInit {
             this._ProductService.getProductByID(this.id)
                 .subscribe(products => {
                     this.model = products;
+                    this.productVisible = true;
                 }, error => {
                     this.errorVisible = true;
                     console.log(error);

@@ -1,3 +1,10 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+    .checked {
+        color: orange;
+    }
+</style>
+
 <div class='panel-primary'>
     <div class="alert alert-danger" role="alert" *ngIf="allertVisible">
         <strong>Wystąpił bład</strong> Dlaczego? Nie wiem, ale się domyślam.
@@ -13,7 +20,7 @@
                 <input type='text'
                        [(ngModel)]="listFilter"/>
             </div>
-            <div class='ml-auto' *ngIf="isLogged()">
+            <div class='ml-auto' *ngIf="isLogged() && isAdmin()">
                 <a [routerLink]="['/product/create']"><button class="btn btn-primary">Dodaj Produkt</button></a>
             </div>
         </div>
@@ -48,15 +55,15 @@
                     <td>{{ product.productCode }}</td>
                     <td>{{ product.releaseDate }}</td>
                     <td><b>{{ product.price | currency:'PLN':true:'1.2-2' }}</b></td>
-                    <td>{{ product.starRating }}</td>
-                    <td *ngIf="product.amount !== 0">{{ product.amount }}</td>
+                    <td><app-star [starRating]="product.starRating"></app-star></td>
+                    <td class="amount" *ngIf="product.amount !== 0">Produkt dostępny</td>
                     <td class="noProduct" type="text" *ngIf="product.amount === 0">Produkt niedostępny</td>
                     <td class="ml-auto text-right">
                         <div class="btn-group" role="group" *ngIf="isLogged()" aria-label="Button group with nested dropdown">
                             <button type="button" class="btn btn-primary" *ngIf="product.amount !== 0" (click)="buyProduct(product._id)">Zamów</button>
-                            <a [routerLink]="['/product/modify', product._id]">
-                                <button type="button" class="btn btn-warning">Modyfikuj</button></a>
-                            <button type="button" class="btn btn-danger" (click)="delete(product._id)">Usuń</button>
+                            <a *ngIf="isAdmin()" [routerLink]="['/product/modify', product._id]">
+                                <button  type="button" class="btn btn-warning">Modyfikuj</button></a>
+                            <button *ngIf="isAdmin()" type="button" class="btn btn-danger" (click)="delete(product._id)">Usuń</button>
                         </div>
                     </td>
                 </tr>

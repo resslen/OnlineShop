@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {IProduct} from './product';
 import {ProductService} from './product.service';
 import {Router} from '@angular/router';
+import {JwtHelper} from 'angular2-jwt';
+
 
 @Component({
     templateUrl: './products-list.component.html',
@@ -10,6 +12,8 @@ import {Router} from '@angular/router';
 export class ProductListComponent implements OnInit {
     _listFilter: string;
     allertVisible: boolean;
+    jwtHelper: JwtHelper = new JwtHelper();
+
 
     get listFilter(): string {
         return this._listFilter;
@@ -57,6 +61,16 @@ export class ProductListComponent implements OnInit {
             return false;
         }
     }
+
+    isAdmin() {
+        const payload = this.jwtHelper.decodeToken(localStorage.getItem('currentUser'));
+        if (payload.admin) {
+            return true;
+        }else {
+            return false;
+        }
+    }
+
     buyProduct(productID: number): void {
         this._productService.buyProduct(productID).subscribe(
             result => {
